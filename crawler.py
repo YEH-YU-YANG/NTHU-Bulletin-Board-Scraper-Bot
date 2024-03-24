@@ -48,8 +48,28 @@ def scrape_announcements():
             })
 
     return announcements
-
-
     
+def save_to_json(announcements):
+    """
+    Saves the announcements data to a JSON file.
+
+    Args:
+        announcements (list): A list of dictionaries representing announcements.
+
+    Returns:
+        None
+
+    Example:
+        >>> announcements = [
+        ...     {'time': '2024-03-23', 'title': 'Sample Announcement 1', 'link': 'https://example.com/announcement1'},
+        ...     {'time': '2024-03-22', 'title': 'Sample Announcement 2', 'link': 'https://example.com/announcement2'},
+        ...     {'time': '2024-03-21', 'title': 'Sample Announcement 3', 'link': 'https://example.com/announcement3'}
+        ... ]
+        >>> save_to_json(announcements)
+    """
+    with open('announcements.json', 'w', encoding='utf-8') as file:
+        json.dump(announcements, file, ensure_ascii=False, indent=4)     
+
 if __name__ == "__main__":
     announcements = scrape_announcements()
+    save_to_json(announcements)
