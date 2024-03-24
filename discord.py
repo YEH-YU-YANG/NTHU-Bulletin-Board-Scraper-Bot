@@ -45,7 +45,44 @@ def read_announcements_from_json():
         announcements = json.load(file)
     return announcements
 
+def date_time():
+    """
+    Generates a message containing current date, time, and day of the week,
+    then sends it via Discord webhook.
 
+    Example Usage:
+        # This function is automatically called when the script is executed.
+        # It sends a Discord webhook message with the current date, time, and day of the week.
+        # No direct function call is necessary.
+    """
+    # 取得目前日期和時間
+    now = datetime.datetime.now() + datetime.timedelta(hours=8)
+    # 格式化日期
+    today_date = now.strftime("%Y-%m-%d")
+    # 格式化時間
+    current_time = now.strftime("%H:%M:%S") 
+    # 格式化星期幾（繁體中文）
+    week_day = {
+        0: "Monday (一)",
+        1: "Tuesday (二)",
+        2: "Wednesday (三)",
+        3: "Thursady (四)",
+        4: "Friday (五)",
+        5: "Saturday (六)",
+        6: "Sunday (日)"
+    }[now.weekday()]
+
+    message = ""
+    message += f">>> Date： {today_date}.      Day： {week_day}.\n"
+    message += f"Update Time： {current_time}\n"
+
+                  
+    webhook.content = message
+
+    # 發送 Webhook 請求
+    response = webhook.execute()
+    
+    
 def send_webhook():
     """
     Reads announcements from JSON, constructs messages, and sends them via Discord webhook.
@@ -81,9 +118,12 @@ def send_webhook():
             webhook.content = message
         
             response = webhook.execute()
+
+        
         
 if __name__ == "__main__":
     try:
+        date_time()
         send_webhook()
     except Exception as e:
         print(f"Error: {e}")
