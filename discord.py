@@ -1,0 +1,45 @@
+"""
+This script sends Discord webhook messages containing announcements and current date-time information.
+
+Dependencies:
+    - discord_webhook: A Python library for sending Discord webhooks.
+    - json: Standard library for JSON manipulation.
+    - datetime: Standard library for handling date and time.
+
+Functions:
+    - read_announcements_from_json(): Reads announcements from a JSON file and returns them as a list of dictionaries.
+    - date_time(): Generates a message containing current date, time, and day of the week, then sends it via Discord webhook.
+    - send_webhook(): Reads announcements from JSON, constructs messages, and sends them via Discord webhook.
+
+Usage:
+    Ensure that 'announcements.json' file exists and contains announcement data in the required format.
+    Set up a Discord webhook URL in the 'web_hook_url' variable.
+    Execute the script to send Discord webhook messages with current date-time information and announcements.
+"""
+
+
+from discord_webhook import DiscordWebhook
+import json
+import datetime
+import os
+
+# 讀取公告資訊的函式
+def read_announcements_from_json():
+    """
+    Reads announcements from a JSON file and returns them as a list of dictionaries.
+
+    Example Usage:
+        # Assuming 'announcements.json' contains announcement data.
+        announcements = read_announcements_from_json()
+        print(announcements)
+
+    Returns:
+        list: A list of dictionaries containing announcement information.
+              Each dictionary should have keys: 'time', 'title', and 'link'.
+              Example format: [{'time': '2024-03-24 10:00:00', 'title': 'Example Announcement', 'link': 'http://example.com'}]
+    """
+    with open('announcements.json', 'r', encoding='utf-8') as file:
+        announcements = json.load(file)
+    return announcements
+
+
