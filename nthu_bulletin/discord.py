@@ -24,6 +24,7 @@ import datetime
 import os
 
 web_hook_url = os.environ['dc_web_hook_url']
+web_hook_url = 'https://discord.com/api/webhooks/1221438403401355355/eUj-RO2Vcrpa26g0YPxXUV4Yh_aYEWyN3zkcvpt35MVXMgdY1oJO7gNAN1uq5j39-BT3'
 webhook = DiscordWebhook(url=web_hook_url)
 
 # 讀取公告資訊的函式

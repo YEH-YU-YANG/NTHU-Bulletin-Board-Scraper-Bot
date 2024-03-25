@@ -23,10 +23,10 @@ jobs:
 
     - name: Run Crawler
       run: |
-        python crawler.py
+        python nthu_bulletin/crawler.py
 
     - name: Run Discord Bot
       env:
         dc_web_hook_url: ${{ secrets.DC_WEB_HOOK_URL }}
       run: |
-        python discord.py
+        python nthu_bulletin/discord.py
